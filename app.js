@@ -24,7 +24,7 @@ async function start() {
         }).then(() => console.log('MongoDB Connected'))
             .catch(err => console.log(err));
 
-        app.listen(5000, () => console.log('App has been started on port ' + myconfig.PORT))
+        app.listen(5000, () => console.log('App has been started on port ' + PORT))
 
     } catch (e) {
         console.log('Server Error', e.message);
@@ -33,7 +33,7 @@ async function start() {
 }
 
 app.use(bodyParser.json());
-
+app.get('/', (req,res) => res.send(process.env));
 const user = require('./routes/user');
 const recept = require('./routes/recept');
 const receptBook = require('./routes/receptBook');
