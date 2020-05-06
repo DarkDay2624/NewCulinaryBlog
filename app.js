@@ -9,11 +9,13 @@ require('./models/Recept');
 require('./models/User');
 
 const app = express();
+
 app.use(passport.initialize());
 require('./middleware/passport')(passport);
 app.use(require('cors')());
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
+
 
 async function start() {
     try {
@@ -33,7 +35,6 @@ async function start() {
 }
 
 app.use(bodyParser.json());
-app.get('/', (req,res) => res.send(process.env));
 const user = require('./routes/user');
 const recept = require('./routes/recept');
 const receptBook = require('./routes/receptBook');
