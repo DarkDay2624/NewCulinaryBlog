@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 async function start() {
     try {
-        await mongoose.connect(myconfig.mongoUri, {
+        await mongoose.connect(process.env.CUSTOMCNNSTR_MyConnectionString || myconfig.mongoUri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true
@@ -35,6 +35,10 @@ async function start() {
 }
 
 app.use(bodyParser.json());
+
+app.get('/', (req,res) => res.send('App setting: ' +  process.env.APPSETTING_MyAppSettings + 'Connection String: ' + process.env.CUSTOMCNNSTR_MyConnectionString));
+console.log (process.env.MyEnvronmentVariable);
+
 const user = require('./routes/user');
 const recept = require('./routes/recept');
 const receptBook = require('./routes/receptBook');
