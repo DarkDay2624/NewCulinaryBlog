@@ -1,27 +1,27 @@
-const User = require('../models/User');
+const RegisterUser = require('../models/RegisterUser');
 
 const getAll = (req, res) => {
-    User.find()
+    RegisterUser.find()
         .exec()
         .then(user => res.json(user))
         .catch(err => res.status(500).json(err))
 };
 
 const create = (req, res) => {
-    User.create(req.body)
+    RegisterUser.create(req.body)
         .then(createdUser => res.json(createdUser))
         .catch(err => res.status(500).json(err))
 };
 
 const update = (req, res) => {
-    User.findOneAndUpdate ({ id: req.params.id}, req.body)
+    RegisterUser.findOneAndUpdate ({ id: req.params.id}, req.body)
         .exec()
         .then(user => res.json(user))
         .catch(err => res.status(500).json(err))
 };
 
 const remove = (req, res) => {
-    User.deleteOne ({ id: req.params.id})
+    RegisterUser.deleteOne ({ id: req.params.id})
         .exec()
         .then(() => res.json({success: true}))
         .catch(err => res.status(500).json(err))
